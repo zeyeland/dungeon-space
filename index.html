@@ -1,0 +1,77 @@
+
+<html>
+        <head>
+            <title>My first three.js app</title>
+            <link rel="stylesheet" href="index02.css">
+        </head>
+        <body>
+            <p id="t1" onclick="moveSpaceship(event)">Touch me LANE 1!</p>
+            <p id="t2" onclick="moveSpaceship(event)">Touch me LANE 2!</p>
+            <p id="t3" onclick="moveSpaceship(event)">Touch me LANE 3!</p>
+            <p id="t4" onclick="moveSpaceship(event)">Touch me LANE 4!</p>
+            <p id="t5" onclick="moveSpaceship(event)">Touch me LANE 5!</p>
+            
+            <script src="js/three.js"></script>
+            <script src="https://threejs.org/examples/js/loaders/OBJLoader.js"></script>
+            <script src="https://threejs.org/examples/js/loaders/MTLLoader.js"></script>
+
+            <script>
+                var scene = new THREE.Scene();
+
+                var width = window.innerWidth ;
+                var height = window.innerHeight ;
+                var camera = new THREE.OrthographicCamera( 1300 / - 1, 1300 / 1, 725 / 1, 725 / - 1, 1, 1000 );
+                var renderer = new THREE.WebGLRenderer();
+
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                document.body.appendChild( renderer.domElement );
+    
+
+                camera.position.z = 950;
+                
+                var routeCounter = 0;
+                
+            </script>
+
+            <script src="js/planets.js"></script>
+            <script src="js/game.js"></script>
+            <script src="js/astroid.js"></script>
+            <script>
+        
+                document.addEventListener("keydown", orbitRocks);
+                //document.addEventListener("touchstart", moveSpaceship);
+                ////document.addEventListener("touchend", moveSpaceship);
+                //document.addEventListener("click", moveSpaceship);
+
+                var light = new THREE.AmbientLight( 0xffffff ); // soft white light
+                scene.add( light );
+        
+
+                ////game loop starts here
+                var animate = function () {
+                    requestAnimationFrame( animate );
+                    
+                    orbitMercury();
+                    orbitVenus();
+                    orbitEarth();
+                    orbitMars();
+                    orbitJupiter();
+                    orbitSaturn();
+                    orbitUranus();
+                    orbitNeptune();
+                    orbitPluto();
+                    if( moveShip == true){
+                        changeSpaceshipPosition(shipMovePosition);
+                        console.log("moving");
+                    }
+                    
+                    
+                    routeCounter += .006;
+                    renderer.render( scene, camera );
+                };
+    
+                animate();
+                
+            </script>
+        </body>
+    </html>

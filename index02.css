@@ -1,0 +1,48 @@
+body {
+	overflow: hidden;
+}
+
+#t1{
+	position: absolute;
+	top: 0vh;
+	height: 20vh;
+	width: 100vw;
+	z-index: 5;
+	opacity: 0;
+}
+
+#t2{
+	position: absolute;
+	top: 20vh;
+	height: 20vh;
+	width: 100vw;
+	z-index: 5;
+	opacity: 0;
+}
+
+#t3{
+	position: absolute;
+	top: 40vh;
+	height: 20vh;
+	width: 100vw;
+	z-index: 5;
+	opacity: 0;
+}
+
+#t4{
+	position: absolute;
+	top: 60vh;
+	height: 20vh;
+	width: 100vw;
+	z-index: 5;
+	opacity: 0;
+}
+
+#t5{
+	position: absolute;
+	top: 80vh;
+	height: 20vh;
+	width: 100vw;
+	z-index: 5;
+	opacity: 0;
+}
