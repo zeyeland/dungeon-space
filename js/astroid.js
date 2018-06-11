@@ -33,8 +33,10 @@ function makeAstroid(laneNumber,x,y){
     this.thisOBJECT;
     astroidArray.push(this);
     this.update = function(){
-        checkRockCollision(parentThis);
-        orbitRocks(parentThis.thisOBJECT);
+        if(parentThis.thisOBJECT != null && parentThis.thisOBJECT != false){
+           checkRockCollision(parentThis);
+            orbitRocks(parentThis.thisOBJECT); 
+        }    
     }
     matLoader.load('models/rock/rock_3.mtl', function(materials){
     materials.preload();
@@ -75,26 +77,33 @@ function orbitRocks(thisRock){
 //this functions will handle collisions between the focus astroid and the spaceship
 function checkRockCollision(thisRock){
     //astroid hits ship at x = -856
-    if(thisRock.thisOBJECT.position.x < -865 && thisRock.thisOBJECT.position.x > -1150 && thisRock.laneNumber == spaceshipPlayerLanePosition){
-        //console.log("ROCK is Crashing the spaceship")
-        //console.log(spaceshipPlayerLanePosition);
-        //console.log(spaceshipPlayer.position.y);
-        //console.log(thisRock.laneNumber);
-        //astroidArray.splice(rockINarray,rockINarray+1);
-        delete astroidArray[rockINarray];
-        if(shouldMoveAstronaut00 == false){
-            shouldMoveAstronaut00 = true;
-            shouldMoveAstronaut = true;
-        }
+    if(thisRock != null && thisRock != false){
         
+
+        if(thisRock.thisOBJECT.position.x < -865 && thisRock.thisOBJECT.position.x > -1150 && thisRock.laneNumber == spaceshipPlayerLanePosition){
+            //console.log("ROCK is Crashing the spaceship")
+            //console.log(spaceshipPlayerLanePosition);
+            //console.log(spaceshipPlayer.position.y);
+            //console.log(thisRock.laneNumber);
+            //astroidArray.splice(rockINarray,rockINarray+1);
+            delete astroidArray[rockINarray];
+            if(shouldMoveAstronaut00 == false){
+                shouldMoveAstronaut00 = true;
+                shouldMoveAstronaut = true;
+            }
+            
+        }
+    
+        
+        
+        if( thisRock.thisOBJECT.position.x < -1375){
+            var rockINarray = astroidArray.indexOf(thisRock);
+            //astroidArray.splice(rockINarray,rockINarray+1);
+            delete astroidArray[rockINarray];
+            playerPoints ++;
+        }
+
+
     }
 
-    
-    
-    if( thisRock.thisOBJECT.position.x < -1375){
-        var rockINarray = astroidArray.indexOf(thisRock);
-        //astroidArray.splice(rockINarray,rockINarray+1);
-        delete astroidArray[rockINarray];
-        playerPoints ++;
-    }
 }
