@@ -30,14 +30,15 @@
                 camera.position.z = 950;
                 
                 var routeCounter = 0;
-                
+                var collidableMeshList = [];
             </script>
 
             <script src="js/planets.js"></script>
             <script src="js/game.js"></script>
             <script src="js/astroid.js"></script>
+            <script src="js/astronaut.js"></script>
             <script>
-        
+                generateAstroid();
                 document.addEventListener("keydown", orbitRocks);
                 //document.addEventListener("touchstart", moveSpaceship);
                 ////document.addEventListener("touchend", moveSpaceship);
@@ -62,10 +63,26 @@
                     orbitPluto();
                     if( moveShip == true){
                         changeSpaceshipPosition(shipMovePosition);
-                        console.log("moving");
+                        calculateLanePosition();
                     }
+                
+                    if(astroidArray.length > 0){
+                        for(var r=0; r < astroidArray.length; r++){
+                            if(astroidArray[r] ){
+                                astroidArray[r].update();  
+                            }     
+                        }
+                    }
+                if(shouldMoveAstronaut == true){
+                    moveAstronaut();
+                    if(shouldMoveAstronaut == true && spaceshipPlayer.position.x > -1200){
+                        spaceshipPlayer.position.x -= 2.2;
+                        spaceshipPlayer.rotation.x -= .1;
+                        spaceshipPlayer.rotation.y += .1;
+                    }
+                }
                     
-                    
+                //console.log(spaceshipPlayerLanePosition);
                     routeCounter += .006;
                     renderer.render( scene, camera );
                 };

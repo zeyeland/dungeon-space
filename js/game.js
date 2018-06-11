@@ -26,6 +26,7 @@ function addMesh(mesh){
 }
 
 var spaceshipPlayer;
+var playerPoints = 0;
 
 function loadMesh(name, callback){
     var objLoader = new THREE.OBJLoader();
@@ -35,16 +36,13 @@ function loadMesh(name, callback){
         objLoader.setMaterials(materials);
         objLoader.load('models/space-shuttle-orbiter.obj', function(obj){
             spaceshipPlayer = obj;
+            collidableMeshList.push(spaceshipPlayer);
             callback(obj);
         });
     });
 }
 // x and y and z positions and rotations for lanes PLAYER1
-var lane1 = [ -14, -.2, 790, 1.55 , (4.7+.5) , 0]; 
-var lane2 = [ -12.5, -3.1, 790, 1.55 , (4.7+.5) , 0];  
-var lane3 = [ -11 , -6 , 790, 1.55 , (4.7+.5) , 0]; 
-var lane4 = [ -9.5, -8.9, 790, 1.55 , (4.7+.5) , 0]; 
-var lane5 = [ -8, -11.8, 790, 1.55 , (4.7+.5) , 0]; 
+
 
 playerOneLanes = [
     [ -1100, 560, 790, 1.55 , (4.7+.5) , 0],
@@ -56,41 +54,62 @@ playerOneLanes = [
 
 var moveShip = false;
 var shipMovePosition;
+var spaceshipPlayerLanePosition = 2;
+
+function calculateLanePosition(){
+    var fullHeight =  window.innerHeight;
+    var rowHeight = fullHeight/5;
+    if(spaceshipPlayer.position.y == 560){
+        spaceshipPlayerLanePosition = 0;
+    }else
+    if( spaceshipPlayer.position.y == 280 ){
+        spaceshipPlayerLanePosition = 1;
+    } else
+    if( spaceshipPlayer.position.y == 0){
+        spaceshipPlayerLanePosition = 2;
+    } else
+    if( spaceshipPlayer.position.y == -280){
+        spaceshipPlayerLanePosition = 3;
+    } else
+    if( spaceshipPlayer.position.y == -560 ){
+        spaceshipPlayerLanePosition = 4;
+    }
+}
 
 function moveSpaceship(event){
     var clickY = event.clientY;   
     //var clickY = event.touches[0].clientY;
 
-    console.log(clickY);
+    //console.log(clickY);
     var fullHeight =  window.innerHeight;
     var rowHeight = fullHeight/5;
 
     if(clickY < rowHeight*1){
         moveShip = true;
         shipMovePosition = 0;
-        //changeSpaceshipPosition(0);
+        spaceshipPlayerLanePosition = 0;
     } else
     if(clickY < rowHeight*2){
         moveShip = true;
         shipMovePosition = 1;
-        //changeSpaceshipPosition(1);
+        spaceshipPlayerLanePosition = 1;
     }else
     if(clickY < rowHeight*3){
         moveShip = true;
         shipMovePosition = 2;
-        //changeSpaceshipPosition(2);
+       spaceshipPlayerLanePosition = 2;
     }else
     if(clickY < rowHeight*4){
         moveShip = true;
         shipMovePosition = 3;
-        //changeSpaceshipPosition(3);
+        spaceshipPlayerLanePosition = 3;
     }else
     if(clickY <= rowHeight*5){
         moveShip = true;
         shipMovePosition = 4;
-        //changeSpaceshipPosition(4);
+        spaceshipPlayerLanePosition = 4;
     }
-
+   
 } 
 
 //arrayIndexPosition aka shipMovePosition variable
@@ -140,10 +159,3 @@ function changeSpaceshipPosition(arrayIndexPosition){
             }
 
 } //end of function 
-
-
-
-function moveSpaceship2(){
-    spaceshipPlayer.position.x = 0;
-    spaceshipPlayer.position.y = 0;
-}
