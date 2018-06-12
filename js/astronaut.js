@@ -1,8 +1,8 @@
 var astronaut007;
 
 function makeAstronaut(){
-    var objLoader = new THREE.OBJLoader();
-    var matLoader = new THREE.MTLLoader();
+    var objLoader = new THREE.OBJLoader(loadingManager);
+    var matLoader = new THREE.MTLLoader(loadingManager);
 
     
     matLoader.load('models/astronaut/Z2.mtl', function(materials){

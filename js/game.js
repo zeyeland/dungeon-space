@@ -29,8 +29,8 @@ var spaceshipPlayer;
 var playerPoints = 0;
 
 function loadMesh(name, callback){
-    var objLoader = new THREE.OBJLoader();
-    var matLoader = new THREE.MTLLoader();
+    var objLoader = new THREE.OBJLoader(loadingManager);
+    var matLoader = new THREE.MTLLoader(loadingManager);
     matLoader.load('models/space-shuttle-orbiter.mtl', function(materials){
        materials.preload();
         objLoader.setMaterials(materials);

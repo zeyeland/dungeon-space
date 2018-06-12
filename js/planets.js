@@ -22,14 +22,14 @@ cube99.position.z = 0;
 
 ///////////////////////SUN//////////////////////////////
 //var materialSun = new THREE.MeshBasicMaterial( {color: 0xffff00 , wireframe: true} );
-var loaderSun = new THREE.TextureLoader().load( 'textures/8k_sun.jpg' );
+var loaderSun = new THREE.TextureLoader().load( 'textures/2k_sun.jpg' );
 var materialSun = new THREE.MeshBasicMaterial( { map: loaderSun, overdraw: 0.5 } );
 var sun = new THREE.Mesh( geometrySUN, materialSun );
 scene.add( sun );
 
 /////////////////////////// MERCURY //////////////////////////////
 //var geometry5 = new THREE.SphereGeometry( 15, 32, 32 );
-var loaderMercury = new THREE.TextureLoader().load( 'textures/8k_mercury.jpg' );
+var loaderMercury = new THREE.TextureLoader().load( 'textures/2k_mercury.jpg' );
 var materialMercury = new THREE.MeshBasicMaterial( { map: loaderMercury, overdraw: 0.5 } );
 var mercury = new THREE.Mesh( geometry5, materialMercury );
 scene.add( mercury );
@@ -91,7 +91,7 @@ function orbitMars(){
 
 //////////////////////////////Jupiter/////////////////////////
 
-var loaderJupiter = new THREE.TextureLoader().load( 'textures/8k_jupiter.jpg' );
+var loaderJupiter = new THREE.TextureLoader().load( 'textures/2k_jupiter.jpg' );
 var materialJupiter = new THREE.MeshBasicMaterial( { map: loaderJupiter, overdraw: 0.5 } );
 var jupiter = new THREE.Mesh( geometry30, materialJupiter );
 scene.add( jupiter );
@@ -106,7 +106,7 @@ function orbitJupiter(){
 
 //////////////////////////Saturn//////////////\
 
-var loaderSaturn = new THREE.TextureLoader().load( 'textures/8k_saturn.jpg' );
+var loaderSaturn = new THREE.TextureLoader().load( 'textures/2k_saturn.jpg' );
 var materialSaturn = new THREE.MeshBasicMaterial( { map: loaderSaturn, overdraw: 0.5 } );
 var saturn = new THREE.Mesh( geometry25, materialSaturn );
 scene.add( saturn );
@@ -134,7 +134,7 @@ function orbitUranus(){
     uranus.rotation.z += .04;                  
 }
 //////////////////////////Neptune//////////////
-var loaderNeptune = new THREE.TextureLoader().load( 'textures/nep0fds1.jpg' );
+var loaderNeptune = new THREE.TextureLoader().load( 'textures/neptunemap.jpg' );
 var materialNeptune = new THREE.MeshBasicMaterial( { map: loaderNeptune, overdraw: 0.5 } );
 var neptune = new THREE.Mesh( geometry15, materialNeptune );
 scene.add( neptune );
@@ -149,9 +149,9 @@ function orbitNeptune(){
 
 //////////////////////////Pluto//////////////
 
-var loaderPluto = new THREE.TextureLoader().load( 'textures/plutomap1k.jpg' );
-var materialPluto = new THREE.MeshBasicMaterial( { map: loaderPluto, overdraw: 0.5 } );
-var pluto = new THREE.Mesh( geometry3, materialPluto );
+//var loaderPluto = new THREE.TextureLoader().load( 'textures/uranusmap.jpg' );
+//var materialPluto = new THREE.MeshBasicMaterial( { map: loaderPluto, overdraw: 0.5 } );
+var pluto = new THREE.Mesh( geometry3, materialUranus );
 scene.add( pluto );
 
 function orbitPluto(){

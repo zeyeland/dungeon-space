@@ -1,7 +1,7 @@
 
 <html>
         <head>
-            <title>My first three.js app</title>
+            <title>Dungeon Space Game 00</title>
             <link rel="stylesheet" href="index02.css">
         </head>
         <body>
@@ -31,12 +31,25 @@
                 
                 var routeCounter = 0;
                 var collidableMeshList = [];
+
+                var RESOURCES_LOADED = false;
+                    
+                var loadingManager = new THREE.LoadingManager();
+
+                loadingManager.onProgress = function(item, loaded, total){
+                    console.log(item, loaded, total);
+                };
+
+                loadingManager.onLoad = function(){
+                    console.log("loaded all resources");
+                    RESOURCES_LOADED = true;
+                };
             </script>
 
-            <script src="js/planets.js"></script>
-            <script src="js/game.js"></script>
-            <script src="js/astroid.js"></script>
-            <script src="js/astronaut.js"></script>
+            <script src="js/planets00.js"></script>
+            <script src="js/game00.js"></script>
+            <script src="js/astroid00.js"></script>
+            <script src="js/astronaut00.js"></script>
             <script>
                 generateAstroid();
                 document.addEventListener("keydown", orbitRocks);
@@ -47,9 +60,16 @@
                 var light = new THREE.AmbientLight( 0xffffff ); // soft white light
                 scene.add( light );
         
+                
 
                 ////game loop starts here
                 var animate = function () {
+
+                    if( RESOURCES_LOADED == false){
+                        requestAnimationFrame( animate );
+                        return;
+                    }
+
                     requestAnimationFrame( animate );
                     
                     orbitMercury();

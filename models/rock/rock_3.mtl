@@ -12,5 +12,5 @@ newmtl 20___Default
 	Kd 0.5882 0.5882 0.5882
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka models\rock\seamless-texture-high-res.jpg
-	map_Kd models\rock\seamless-texture-high-res.jpg
+	map_Ka models\rock\2k_mercury.jpg
+	map_Kd models\rock\2k_mercury.jpg
